@@ -10,5 +10,14 @@ public class Result {
     private String message;
     private Map<String, Object> data;
 
+    public Result(Boolean status, String message) {
+        this.status = status;
+        this.message = message;
+    }
 
+    public Result(Boolean status, String message, Map<String, Object> data) {
+        this.status = status;
+        this.message = message;
+        this.data = data;
+    }
 }

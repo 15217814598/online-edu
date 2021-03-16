@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 public class UserController {
     @Autowired
@@ -17,20 +20,18 @@ public class UserController {
 
     @GetMapping("login")
     private Result login(@RequestBody User user) {
-        Result result = new Result();
         if (user.getUsername() == null || user.getPassword() == null) {
-            result.setStatus(false);
-            result.setMessage("账号密码不能为空");
-            return result;
+                return new Result(false, "账号或密码不能为空");
         }
         User user1 = userService.fingByName(user);
         if (user1 == null) {
-            result.setStatus(false);
-            result.setMessage("账号不存在");
-            return result；
+            return new Result(false, "账号不存在");
         }
         if (user1.getPassword() != user.getPassword()) {
-            return
+            return new Result(false, "密码错误");
         }
+        Map<String, Object> data = new HashMap<>();
+        data.put("username", user1.getUsername());
+        return new Result(true, "登录成功", data);
     }
 }
