@@ -7,6 +7,7 @@ import lombok.Data;
 @Data
 @ApiModel(value = "com.edu.onlineedu.pojo.Login", description = "用户参数")
 public class Login {
+    private Integer id;
     @ApiModelProperty(value = "账号")
     private String name;
     @ApiModelProperty(value = "密码")

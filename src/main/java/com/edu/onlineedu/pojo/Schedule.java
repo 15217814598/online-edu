@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class Classes {
+public class Schedule {
     private Integer classId;
 
     private String className;

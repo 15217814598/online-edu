@@ -1,7 +1,7 @@
 package com.edu.onlineedu.service;
 
-import com.edu.onlineedu.mapper.ClassMapper;
-import com.edu.onlineedu.pojo.Classes;
+import com.edu.onlineedu.mapper.ScheduleMapper;
+import com.edu.onlineedu.pojo.Schedule;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,14 +10,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ClassService {
+public class ScheduleService {
     @Autowired
-    private ClassMapper classMapper;
+    private ScheduleMapper classMapper;
 
-    public PageInfo<Classes> getAllClass(int pageNum, int pageSize) {
+    public PageInfo<Schedule> getAllClass(int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
-        List<Classes> list = classMapper.getAllClass();
-        PageInfo<Classes> pageInfo = new PageInfo<>(list);
+        List<Schedule> list = classMapper.getAllClass();
+        PageInfo<Schedule> pageInfo = new PageInfo<>(list);
         return pageInfo;
     }
 }

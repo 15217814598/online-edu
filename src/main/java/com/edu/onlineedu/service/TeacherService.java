@@ -24,4 +24,16 @@ public class TeacherService {
         PageInfo<Teacher> pageInfo = new PageInfo<>(list);
         return pageInfo;
     }
+
+    public void addTeacher(Teacher teacher) {
+        teacherMapper.addTeacher(teacher);
+    }
+
+    public void deleteTeacher(Integer id) {
+        teacherMapper.deleteTeacher(id);
+    }
+
+    public void updateTeacher(Teacher teacher) {
+        teacherMapper.updateTeacher(teacher);
+    }
 }

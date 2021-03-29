@@ -20,4 +20,16 @@ public class StudentService {
         PageInfo<Student> pageInfo = new PageInfo<>(students);
         return pageInfo;
     }
+
+    public void addStudent(Student student) {
+        studentMapper.addStudent(student);
+    }
+
+    public void deleteStudent(Integer id) {
+        studentMapper.deleteStudent(id);
+    }
+
+    public void updateStudent(Student student) {
+        studentMapper.updateStudent(student);
+    }
 }
