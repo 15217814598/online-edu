@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class Teacher {
 
-    @JsonIgnore
+    //@JsonIgnore
     private Integer teacherId;
 
     private String teacherName;

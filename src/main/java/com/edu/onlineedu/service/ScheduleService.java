@@ -12,12 +12,24 @@ import java.util.List;
 @Service
 public class ScheduleService {
     @Autowired
-    private ScheduleMapper classMapper;
+    private ScheduleMapper scheduleMapper;
 
-    public PageInfo<Schedule> getAllClass(int pageNum, int pageSize) {
+    public PageInfo<Schedule> getAllSchedule(int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
-        List<Schedule> list = classMapper.getAllClass();
+        List<Schedule> list = scheduleMapper.getAllSchedule();
         PageInfo<Schedule> pageInfo = new PageInfo<>(list);
         return pageInfo;
+    }
+
+    public void addSchedule(Schedule schedule) {
+        scheduleMapper.addSchedule(schedule);
+    }
+
+    public void deleteSchedule(Integer id) {
+        scheduleMapper.deleteSchedule(id);
+    }
+
+    public void updateSchedule(Schedule schedule) {
+        scheduleMapper.updateSchedule(schedule);
     }
 }

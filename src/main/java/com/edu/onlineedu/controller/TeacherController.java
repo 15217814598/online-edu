@@ -13,6 +13,8 @@ import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @Api(tags = "教师接口")
 @RestController
 @RequestMapping("teacher")
@@ -22,9 +24,18 @@ public class TeacherController {
 
     @ApiOperation(value = "获取全部教师")
     @ApiResponses({@ApiResponse(code=200, message = "success", response = Teacher.class)})
-    @GetMapping("get_all")
-    public Result getAllTeacher(@RequestParam(required = false, defaultValue = "1") int pageNum, @RequestParam(required = false, defaultValue = "10") int pageSize) {
+    @GetMapping
+    public Result getAllTeacher(@RequestParam(required = false, defaultValue = "1", value = "pageNum") int pageNum,
+                                @RequestParam(required = false, defaultValue = "10", value = "pageSize") int pageSize) {
         PageInfo<Teacher> pageInfo = teacherService.getAllTeacher(pageNum, pageSize);
+        return Result.success("查询成功", pageInfo);
+    }
+
+    @ApiOperation(value = "按条件获取全部教师")
+    @ApiResponses({@ApiResponse(code=200, message = "success", response = Teacher.class)})
+    @PostMapping("get_all")
+    public Result getAllTeacher(@RequestBody Map<String, Object> conditions) {
+        PageInfo<Teacher> pageInfo = teacherService.getAllTeacher(conditions);
         return Result.success("查询成功", pageInfo);
     }
 

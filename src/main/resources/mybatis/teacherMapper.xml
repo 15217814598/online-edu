@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.edu.onlineedu.mapper.TeacherMapper">
+    <select id="getAllTeacher" resultType="com.edu.onlineedu.pojo.Teacher" parameterType="map">
+    select * from teacher
+    </select>
+    <select id="getAllTeacherByConditions" resultType="com.edu.onlineedu.pojo.Teacher" parameterType="map">
+        select * from teacher
+        <where>
+            <if test="teacherId != null">
+                and teacher_id = #{teacherId}
+            </if>
+            <if test="teacherName != null">
+                and teacher_name like "%"#{teacherName}"%"
+            </if>
+            <if test="teacherTitle != null">
+                and teacher_title like "%"#{teacherTitle}"%"
+            </if>
+            <if test="teacherExp != null">
+                and teacher_exp = "%"#{teacherExp}"%"
+            </if>
+            <if test="teacherPhone != null">
+                and teacher_phone like "%"#{teacherPhone}"%"
+            </if>
+            <if test="teacherEmail != null">
+                and teacher_email like "%"#{teacherEmail}"%"
+            </if>
+        </where>
+    </select>
+</mapper>

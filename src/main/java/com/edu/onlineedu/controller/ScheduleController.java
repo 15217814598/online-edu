@@ -9,23 +9,44 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Api(tags = "课程接口")
 @RestController
 @RequestMapping("schedule")
 public class ScheduleController {
     @Autowired
-    private ScheduleService classService;
+    private ScheduleService scheduleService;
 
     @ApiOperation(value = "获取全部课程")
     @ApiResponses({@ApiResponse(code=200, message = "success", response = Schedule.class)})
-    @GetMapping("get_all_class")
-    public Result getAllClass(@RequestParam(required = false, defaultValue = "1") int pageNum, @RequestParam(required = false, defaultValue = "10") int pageSize) {
-        PageInfo<Schedule> pageInfo = classService.getAllClass(pageNum, pageSize);
+    @GetMapping("get_all")
+    public Result getAllSchedule(@RequestParam(required = false, defaultValue = "1") int pageNum, @RequestParam(required = false, defaultValue = "10") int pageSize) {
+        PageInfo<Schedule> pageInfo = scheduleService.getAllSchedule(pageNum, pageSize);
         return Result.success("查询成功", pageInfo);
+    }
+
+    @ApiOperation(value = "添加课程")
+    @ApiResponses({@ApiResponse(code=200, message = "success", response = Schedule.class)})
+    @PostMapping("add")
+    public Result addSchedule(@RequestBody Schedule schedule) {
+        scheduleService.addSchedule(schedule);
+        return Result.success("添加成功", null);
+    }
+
+    @ApiOperation(value = "删除课程")
+    @ApiResponses({@ApiResponse(code=200, message = "success", response = Schedule.class)})
+    @DeleteMapping("delete/{id}")
+    public Result deleteSchedule(@PathVariable Integer id) {
+        scheduleService.deleteSchedule(id);
+        return Result.success("删除成功", null);
+    }
+
+    @ApiOperation(value = "更新课程")
+    @ApiResponses({@ApiResponse(code=200, message = "success", response = Schedule.class)})
+    @PutMapping("update")
+    public Result updateSchedule(@RequestBody Schedule schedule) {
+        scheduleService.updateSchedule(schedule);
+        return Result.success("更新成功", null);
     }
 }
