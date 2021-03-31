@@ -20,6 +20,6 @@ public interface StudentMapper {
 
     @Update("update student " +
             "set student_name = #{studentName}, student_age = #{studentAge}, student_time = #{studentTime}, student_phone = #{studentPhone}, student_email = #{studentEmail} " +
-            "where student_id = #{student_id}")
+            "where student_id = #{studentId}")
     void updateStudent(Student student);
 }

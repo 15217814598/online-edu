@@ -37,15 +37,15 @@ public class StudentController {
 
     @ApiOperation(value = "删除学生")
     @ApiResponses({@ApiResponse(code=200, message = "success", response = Student.class)})
-    @DeleteMapping("delete_student")
-    public Result deleteStudent(@RequestBody Integer id) {
+    @DeleteMapping("delete/{id}")
+    public Result deleteStudent(@PathVariable Integer id) {
         studentService.deleteStudent(id);
         return Result.success("添加成功", null);
     }
 
     @ApiOperation(value = "修改学生信息")
     @ApiResponses({@ApiResponse(code=200, message = "success", response = Student.class)})
-    @PutMapping("update_student")
+    @PutMapping("update")
     public Result updateStudent(@RequestBody Student student) {
         studentService.updateStudent(student);
         return Result.success("添加成功", null);
