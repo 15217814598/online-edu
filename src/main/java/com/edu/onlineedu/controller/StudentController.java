@@ -21,7 +21,7 @@ public class StudentController {
 
     @ApiOperation("获取全部学生")
     @ApiResponses({@ApiResponse(code=200, message = "success", response = Student.class)})
-    @GetMapping("get_all_student")
+    @GetMapping("get_all")
     public Result getAllStudent(@RequestParam(required = false, defaultValue = "1") int pageNum, @RequestParam(required = false, defaultValue = "10") int pageSize) {
         PageInfo pageInfo = studentService.getAllStudent(pageNum, pageSize);
         return Result.success("查询成功", pageInfo);
@@ -29,7 +29,7 @@ public class StudentController {
 
     @ApiOperation(value = "添加学生")
     @ApiResponses({@ApiResponse(code=200, message = "success", response = Student.class)})
-    @PostMapping("add_student")
+    @PostMapping("add")
     public Result addStudent(@RequestBody Student student) {
         studentService.addStudent(student);
         return Result.success("添加成功", null);
