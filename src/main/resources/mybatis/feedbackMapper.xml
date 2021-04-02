@@ -4,6 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.edu.onlineedu.mapper.FeedbackMapper">
     <select id="getAllFeedbacks" resultType="com.edu.onlineedu.pojo.Feedback" parameterType="map">
-        select * from feedback;
+        select * from feedback
+        <where>
+            <if test="feedbackId != null">
+                and feedback_id = #{feedbackId}
+            </if>
+        </where>
     </select>
 </mapper>

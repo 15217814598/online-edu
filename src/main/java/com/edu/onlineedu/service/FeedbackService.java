@@ -20,7 +20,7 @@ public class FeedbackService {
         Integer pageNum = conditions.containsKey("pageNum") ? (Integer) conditions.get("pageNum") : 1;
         Integer pageSize = conditions.containsKey("pageSize") ? (Integer) conditions.get("pageNum") : 10;
         PageHelper.startPage(pageNum, pageSize);
-        List<Feedback> list = feedbackMapper.getAllFeedbacks();
+        List<Feedback> list = feedbackMapper.getAllFeedbacks(conditions);
         PageInfo<Feedback> pageInfo = new PageInfo<>(list);
         return pageInfo;
     }

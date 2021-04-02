@@ -1,6 +1,7 @@
 package com.edu.onlineedu.controller;
 
 import com.edu.onlineedu.pojo.Result;
+import com.edu.onlineedu.pojo.Schedule;
 import com.edu.onlineedu.pojo.Student;
 import com.edu.onlineedu.pojo.Teacher;
 import com.edu.onlineedu.service.StudentService;
@@ -11,6 +12,8 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @Api(tags = "学生接口")
 @RestController
@@ -24,6 +27,14 @@ public class StudentController {
     @GetMapping("get_all")
     public Result getAllStudent(@RequestParam(required = false, defaultValue = "1") int pageNum, @RequestParam(required = false, defaultValue = "10") int pageSize) {
         PageInfo pageInfo = studentService.getAllStudent(pageNum, pageSize);
+        return Result.success("查询成功", pageInfo);
+    }
+
+    @ApiOperation(value = "按条件获取全部学生")
+    @ApiResponses({@ApiResponse(code=200, message = "success", response = Schedule.class)})
+    @PostMapping("get_all")
+    public Result getAllTeacher(@RequestBody Map<String, Object> conditions) {
+        PageInfo<Student> pageInfo = studentService.getAllStudent(conditions);
         return Result.success("查询成功", pageInfo);
     }
 

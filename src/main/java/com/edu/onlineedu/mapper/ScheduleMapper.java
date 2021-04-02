@@ -4,9 +4,13 @@ import com.edu.onlineedu.pojo.Schedule;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface ScheduleMapper {
+
+    List<Schedule> getAllSchedulesByConditions(Map<String, Object> conditions);
+
     @Select("select * from schedule")
     List<Schedule> getAllSchedule();
 

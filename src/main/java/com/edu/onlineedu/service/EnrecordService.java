@@ -20,7 +20,7 @@ public class EnrecordService {
         Integer pageNum = conditions.containsKey("pageNum") ? (Integer) conditions.get("pageNum") : 1;
         Integer pageSize = conditions.containsKey("pageSize") ? (Integer) conditions.get("pageNum") : 10;
         PageHelper.startPage(pageNum, pageSize);
-        List<Enrecord> list = enrecordMapper.getAllEnercord();
+        List<Enrecord> list = enrecordMapper.getAllEnercord(conditions);
         PageInfo<Enrecord> pageInfo = new PageInfo<>(list);
         return pageInfo;
     }

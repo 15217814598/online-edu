@@ -4,6 +4,7 @@ import com.edu.onlineedu.pojo.Student;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface StudentMapper {
@@ -22,4 +23,6 @@ public interface StudentMapper {
             "set student_name = #{studentName}, student_age = #{studentAge}, student_time = #{studentTime}, student_phone = #{studentPhone}, student_email = #{studentEmail} " +
             "where student_id = #{studentId}")
     void updateStudent(Student student);
+
+    List<Student> getAllTeacherByConditions(Map<String, Object> conditions);
 }

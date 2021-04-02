@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.edu.onlineedu.mapper.ScheduleMapper">
+    <select id="getAllSchedulesByConditions" resultType="com.edu.onlineedu.pojo.Schedule" parameterType="map">
+        select * from schedule
+        <where>
+            <if test="scheduleId != null">
+                and class_id = #{scheduleId}
+            </if>
+            <if test="scheduleName != null">
+                and class_name = #{scheduleName}
+            </if>
+        </where>
+    </select>
+</mapper>
